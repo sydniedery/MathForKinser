@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Net.Http.Headers;
+using System.Reflection.PortableExecutable;
 
 namespace Math
 { 
@@ -8,13 +9,51 @@ namespace Math
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("What is your first integer?");
-            int
+            int numOne = 0;
+            int numTwo = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                if (numOne == 0)
+                {
+                    Console.WriteLine("What is your first integer?");
+                    string StringNumOne = Console.ReadLine();
+                    numOne = validateInput(StringNumOne);
+                }
+
+            }
+
+            if (numOne == 0)
+            {
+                Console.WriteLine("Invalid Input Too Many Times. BYE!");
+                Console.Read();
+                //    Environment.Exit(0);
+
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                if (numTwo == 0)
+                {
+                    Console.WriteLine("What is your second integer?");
+                    string StringNumTwo = Console.ReadLine();
+                    numTwo = validateInput(StringNumTwo);
+                }
+
+            }
+            if (numTwo == 0)
+            {
+                Console.WriteLine("Invalid Input Too Many Times. BYE!");
+                Console.Read();
+                //       Environment.Exit(0);
+
+            }
+            int bigNum = numOne + numTwo;
+            Console.WriteLine(recursiveMethod(bigNum));
+
         }
 
         //this method will take the user's input and confirm that they gave us and integer
         // if they didn't it will return the int 0
-        public int validateInput(string input)
+        public static int validateInput(string input)
         {
             int validated = 0;
 
@@ -24,17 +63,19 @@ namespace Math
         }
 
         //recursive method that takes in the number to recursively add the least significant number to itself, once you've removed the least significant number
-        public int recursiveMethod(int bigNum)
+        public static int recursiveMethod(int bigNum)
         {
             //this makes sure we aren't done. It will exit if the int is a single digit
-            if(bigNum == bigNum % 10) 
+            if(bigNum != bigNum % 10) 
             {
-                return bigNum;
+                int moddedNum = bigNum % 10;
+                int divNum = bigNum / 10;
+                int newNum = divNum + moddedNum;
+                return recursiveMethod(newNum);
             }
             else
-            {
+            { return bigNum; }  
 
-            }
             
         }
     }
