@@ -21,7 +21,6 @@ namespace Math
                 }
 
             }
-
             if (numOne == 0)
             {
                 Console.WriteLine("Invalid Input Too Many Times. BYE!");
@@ -29,25 +28,40 @@ namespace Math
                 //    Environment.Exit(0);
 
             }
-            for (int i = 0; i < 3; i++)
+            else
             {
-                if (numTwo == 0)
+                //only continue asking for data if the first integer was correctly given. 
+                if (numOne != 0)
                 {
-                    Console.WriteLine("What is your second integer?");
-                    string StringNumTwo = Console.ReadLine();
-                    numTwo = validateInput(StringNumTwo);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (numTwo == 0)
+                        {
+                            Console.WriteLine("What is your second integer?");
+                            string StringNumTwo = Console.ReadLine();
+                            numTwo = validateInput(StringNumTwo);
+                        }
+
+                    }
+                    //program ends if second int was not given after three attempts
+                    if (numTwo == 0)
+                    {
+                        Console.WriteLine("Invalid Input Too Many Times. BYE!");
+                        Console.Read();
+                        //       Environment.Exit(0);
+
+                    }
+                    else
+                    {
+                        int bigNum = numOne + numTwo;
+                        Console.WriteLine("\nResult: " + recursiveMethod(bigNum));
+                    }
                 }
-
+           
             }
-            if (numTwo == 0)
-            {
-                Console.WriteLine("Invalid Input Too Many Times. BYE!");
-                Console.Read();
-                //       Environment.Exit(0);
 
-            }
-            int bigNum = numOne + numTwo;
-            Console.WriteLine(recursiveMethod(bigNum));
+  
+
 
         }
 
@@ -68,8 +82,8 @@ namespace Math
             //this makes sure we aren't done. It will exit if the int is a single digit
             if(bigNum != bigNum % 10) 
             {
-                int moddedNum = bigNum % 10;
-                int divNum = bigNum / 10;
+                int moddedNum = bigNum % 10; //get the least sig dig
+                int divNum = bigNum / 10; //get number without least sig dig
                 int newNum = divNum + moddedNum;
                 return recursiveMethod(newNum);
             }
