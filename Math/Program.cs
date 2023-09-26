@@ -1,10 +1,25 @@
-﻿using System;
+
+using System;
 using System.Globalization;
 using System.Net.Http.Headers;
 using System.Reflection.PortableExecutable;
 
 namespace Math
 { 
+    /*
+        This class takes the recursive function outlined in Monday's class over implementation.
+        We take two integers and add them together. From there, we recursively break down that
+        number by taking the least significant digit and adding it to the next least significant
+        digit. We will do this until we reach a single digit. Once we have reached the single digit,
+        we will print that number out. 
+
+        We break the number down through a series of Modulo calculations to get the least significant
+        number and shave off that last number by dividing the int by 10. We add the least significant 
+        digit to the new number and loop. 
+
+        Date Created: 9/25/23
+        @author: Sydnie Dery and Thomas Justice
+    */
     public class Program
     {
         static void Main(string[] args)
