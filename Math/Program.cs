@@ -73,6 +73,11 @@ namespace Math
 
             bool success = int.TryParse(input, out validated);
 
+            if (validated < 0)
+            {
+                return 0;
+            }
+
             return validated;
         }
 
